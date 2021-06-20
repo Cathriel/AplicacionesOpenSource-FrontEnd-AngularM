@@ -1,0 +1,59 @@
+
+    <mat-card-title style="text-align: center; font-size: xx-large;margin: 3%;font-weight: normal"  >Bienvenido a Roomies</mat-card-title>
+  <mat-card style="background-color: #e1e1e1;padding: 70px;justify-items: center;align-items: center">
+    <mat-card-title style="text-align: center;font-size: xx-large;padding-bottom: 50px">Compartida la vida es más bonita</mat-card-title>
+    <div style="flex-direction: row;display: flex;justify-content: space-between">
+
+        <mat-card class="card" style="background-color: #ae8aa8;margin-left: auto;margin-right: 5% ">
+          <div >
+          <mat-card-title style="font-size: 1.5em;padding-top: 7%">Tu compañero ideal</mat-card-title>
+          <hr style="max-width: 80%;margin: 0">
+          <mat-card-content style="font-size: medium;padding-top: 7%">Roomies cuenta con una variedad de filtros para encontrar al roomate que tenga mayor compatibilidad contigo.</mat-card-content>
+          </div>
+          <div style="width: 80%">
+          <img alt="xxx" style="max-width: 100%" src="https://cathriel.github.io/Aplicaciones_Web/img/friends.png">
+          </div>
+        </mat-card>
+
+        <mat-card class="card" style="background-color: #fec84c;margin-right: auto">
+          <div >
+          <mat-card-title style="font-size:  1.5em;padding-top: 7%">Tu hogar soñado</mat-card-title>
+          <hr style="max-width: 80%;margin: 0;">
+          <mat-card-content style="font-size: medium;padding-top: 7%">Roomies te ofrece una gran cantidad de anuncios de inmuebles para compartir con tu roomate, en alquiler.</mat-card-content>
+          </div>
+          <div style="width: 80%">
+            <img alt="xxx" style="margin-left: 20px;max-width: 80%" src="https://cathriel.github.io/Aplicaciones_Web/img/home.png">
+          </div>
+        </mat-card>
+    </div>
+  </mat-card>
+  <div style="margin: 2.3%">
+    <mat-card-title style="font-size: x-large">Últimas Publicaciones</mat-card-title>
+  </div>
+  <hr style="border: 1px solid #E1E1E1 ">
+  <mat-card style="margin-top: 2%;background-color: #f6f6f6">
+    <div style="flex-direction: row;display: flex;justify-content: space-between;margin: auto;width: 80%">
+
+    <div style="max-width: 30%" *ngFor="let member of members" >
+      <mat-card style="background-color: #eeeeee;margin: auto;padding-bottom: 25%">
+
+        <img mat-card-image [src]="member.url" alt="Photo of {{member.title}} ">
+
+
+          <mat-card-title style="margin-bottom: 8%;margin-top:6%;font-size: large">{{member.title}}</mat-card-title>
+
+          <mat-card-subtitle class="line-height" style="font-size: medium">{{member.subtitle}}</mat-card-subtitle>
+
+
+        <mat-card-content>
+
+          <div style="flex-direction: row;display: flex;float: right" >
+            <button class="button" style="margin-right: 6%" mat-raised-button>Contacto</button>
+            <button class="button" mat-raised-button>Ver más</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  </mat-card>
+

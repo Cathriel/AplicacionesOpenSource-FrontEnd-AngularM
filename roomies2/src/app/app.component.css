@@ -1,0 +1,15 @@
+.default-spacer {
+  flex: 1 1 auto;
+}
+.mat-toolbar-row{
+  background-color: #fba31b;
+}
+.mat-flat-button{
+  background-color: #fba31b;
+}
+
+.alignBottom {
+  position:absolute;
+  bottom: 0;
+  width: 100%;
+}

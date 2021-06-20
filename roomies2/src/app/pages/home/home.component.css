@@ -1,0 +1,31 @@
+.inline-block {
+  display: inline-block;
+}
+
+.space-between{
+justify-content: space-between;
+}
+
+.line-height{
+  line-height: 120%;
+}
+
+.button{
+  font-size: 1em;
+  background-color: #fba31b;
+  margin-top: 12%;
+  text-align: center;
+}
+
+
+
+.card{
+  padding-left: 2%;
+  padding-right: 2%;
+  align-items: center;
+  max-width: 40%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
+}
