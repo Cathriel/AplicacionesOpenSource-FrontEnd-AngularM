@@ -1,0 +1,136 @@
+<div class="content">
+
+  <mat-grid-list cols="4" rowHeight="250px">
+    <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color">
+      <img width="100%" height="auto" src="{{tile.url}} ">
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <div class="center">
+    <mat-button-toggle-group>
+      <mat-button-toggle>Fotos</mat-button-toggle>
+      <mat-button-toggle>Video</mat-button-toggle>
+      <mat-button-toggle>360°</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+</div>
+
+
+<div class="left">
+
+  <mat-card>
+    <mat-card-title>Titulo</mat-card-title>
+    <mat-card-subtitle>Calle</mat-card-subtitle>
+
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="precio">
+        <th mat-header-cell *matHeaderCellDef>Precio</th>
+        <td mat-cell *matCellDef="let element"> {{ element.precio }} </td>
+      </ng-container>
+      <ng-container matColumnDef="dormitorios">
+        <th mat-header-cell *matHeaderCellDef>Dormitorios</th>
+        <td mat-cell *matCellDef="let element"> {{ element.dormitorios }}</td>
+      </ng-container>
+      <ng-container matColumnDef="banos">
+        <th mat-header-cell *matHeaderCellDef>Baños</th>
+        <td mat-cell *matCellDef="let element"> {{ element.banos }}</td>
+      </ng-container>
+      <ng-container matColumnDef="m2">
+        <th mat-header-cell *matHeaderCellDef>m2</th>
+        <td mat-cell *matCellDef="let element"> {{ element.m2 }}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-card-title>Descripción</mat-card-title>
+    <mat-card-subtitle>Relleno</mat-card-subtitle>
+
+    <mat-card-title>Ubicación</mat-card-title>
+    <google-map [center]="ubicacion" width="100%">
+      <map-marker [position]="ubicacion"></map-marker>
+    </google-map>
+
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <strong>Normas de convivencia</strong>
+          <mat-icon>unfold_more</mat-icon>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>- Norma 1</p>
+      <p>- Norma 2</p>
+      <p>- Norma 3</p>
+    </mat-expansion-panel>
+
+    <mat-card-title>Reseñas</mat-card-title>
+    <mat-card>
+      <mat-card-subtitle>Fecha</mat-card-subtitle>
+      <mat-card-title>Titutlo Reseña</mat-card-title>
+      <mat-card-subtitle>Descripción de la reseña</mat-card-subtitle>
+      <hr>
+      <mat-card-content>¿Fue útil esta reseña?</mat-card-content>
+    </mat-card>
+
+    <mat-card-title>Datos del Arrendador</mat-card-title>
+    <mat-list>
+      <mat-list-item>Nombre</mat-list-item>
+      <mat-list-item>DNI</mat-list-item>
+      <mat-list-item>Telefono</mat-list-item>
+      <mat-list-item>Celular</mat-list-item>
+    </mat-list>
+
+  </mat-card>
+
+</div>
+
+<div class="right">
+
+  <mat-card>
+    <mat-card-title>Contactar</mat-card-title>
+    <button mat-raised-button color="primary">Contactar al arrendador</button>
+  </mat-card>
+
+</div>
+
+<div class="left">  <mat-card-title style="font-size: x-large">Propiedades que te pueden interesar</mat-card-title></div>
+<div class="center" style="justify-content: space-between" >
+
+  <ng-template let-bestMember="members[0]">
+    best: {{bestMember|json}}
+  </ng-template>
+
+  <div fxFlex="23" *ngFor="let member of members"  >
+    <mat-card fxFlex>
+
+      <img mat-card-image [src]="member.url" alt="Photo of {{member.title}} ">
+      <mat-card-header>
+
+        <!--          <div mat-card-avatar class="example-header-image"></div>-->
+
+        <mat-card-title>{{member.title}}</mat-card-title>
+
+        <!--          <div class="stars">-->
+        <!--            <ngx-star-rating formControlName="rating2" [id]="'rating2'" [disabled] ="true"></ngx-star-rating>-->
+        <!--          </div>-->
+        <!--          <div>Rating(Disabled): {{form.value.rating2}}</div>-->
+
+        <mat-card-subtitle>{{member.subtitle}}</mat-card-subtitle>
+
+
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          {{member.content}}
+        </p>
+        <div class="row">
+          <button mat-raised-button>Contacto</button>
+          <button mat-raised-button>Ver mas</button>
+
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>
