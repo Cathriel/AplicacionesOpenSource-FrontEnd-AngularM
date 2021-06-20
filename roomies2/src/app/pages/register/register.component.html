@@ -1,0 +1,126 @@
+<div >
+<mat-vertical-stepper  [linear]="false" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup" >
+      <ng-template matStepLabel>Selecciona un tipo de cuenta</ng-template>
+      <h1 style="text-align: center">Selecciona tu tipo de cuenta</h1>
+      <div style="text-align: center;display: flex; flex-direction: row;height: 180px;align-content: space-between;justify-content: center;margin-top: 4%">
+        <mat-card  style="max-width: 15%;margin-right: 10%;background-color: #fba31b">
+          <mat-card-title style="margin-top: 7%">Arrendador</mat-card-title>
+          <mat-card-content style="margin-top: 10%">Deseo colocar un anuncio de alquiler de mi inmueble</mat-card-content>
+          <div>
+            <button style="background-color: white" mat-button matStepperNext (click)="setAccountType('arrendador')">Seleccionar</button>
+          </div>
+        </mat-card>
+
+        <mat-card style="max-width: 15%;background-color: #b06b9c">
+          <mat-card-title style="margin-top: 7%">Arrendatario</mat-card-title>
+          <mat-card-content style="margin-top: 10%">Deseo alquilar un inmueble/buscar un roomate.</mat-card-content>
+          <div>
+            <button style="background-color: white" mat-button (click)="setAccountType('arrendatario')" matStepperNext >Seleccionar</button>
+          </div>
+        </mat-card>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" *ngIf="accountType!=''">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Complete con su información personal</ng-template>
+      <div style="width: 35%;margin-right: auto;margin-left: auto;margin-top: 4%;justify-content: space-between">
+        <div style="display: flex;flex-direction: row;margin: auto;width: 100%;justify-content:space-between;">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombres</mat-label>
+            <input matInput  required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" >
+            <mat-label>Apellidos</mat-label>
+            <input matInput  required>
+          </mat-form-field>
+        </div>
+        <div style="display: flex;flex-direction: row;margin: auto;width: 100%;justify-content:space-between">
+          <mat-form-field appearance="outline">
+            <mat-label>Correo</mat-label>
+            <input matInput  required type="email">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input matInput  required type="password">
+          </mat-form-field>
+        </div>
+        <div style="display: flex;flex-direction: row;margin: auto;width: 100%;justify-content:space-between">
+          <mat-form-field appearance="outline">
+            <mat-label>Número de Teléfono</mat-label>
+            <input matInput  required type="number">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Documento de identidad o Pasaporte</mat-label>
+            <input matInput  required>
+          </mat-form-field>
+        </div>
+        <div style="display: flex;flex-direction: row;margin: auto;width: 100%;justify-content:space-between">
+          <mat-form-field appearance="outline">
+            <mat-label>Cumpleaños</mat-label>
+            <input matInput  required type="date">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Departamento</mat-label>
+            <input matInput  required >
+          </mat-form-field>
+        </div>
+        <div style="display: flex;flex-direction: row;margin: auto;width: 100%;justify-content:space-between">
+          <mat-form-field appearance="outline">
+            <mat-label>Provincia</mat-label>
+            <input matInput  required >
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Distrito</mat-label>
+            <input matInput  required >
+          </mat-form-field>
+        </div>
+        <div style="display: flex;flex-direction: row;margin: auto;width: 100%;justify-content:space-between">
+          <mat-form-field appearance="outline">
+            <mat-label >Dirección</mat-label>
+            <input matInput  required >
+          </mat-form-field>
+        </div>
+        <div style="display: flex;flex-direction: row;margin: auto;width: 40%;justify-content:space-between">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step *ngIf="accountType!=''">
+    <ng-template matStepLabel>Seleccion un tipo de plan</ng-template>
+    <div *ngIf="accountType=='arrendatario'" style="display: flex;flex-direction: row;width: 60%;justify-content: space-between; margin-left: auto;margin-right: auto; margin-top: 3%">
+      <mat-card *ngFor=" let plan of plansLeaseholder " style="width: 40%">
+        <h1>{{plan.name}}</h1>
+        <div *ngFor="let benefit of plan.benefits">
+          <p>{{benefit}}</p>
+        </div>
+
+          <p style="text-align: center">S/ {{plan.price}}</p>
+          <div >
+            <button style="margin-left: auto;margin-right: auto;background-color: #e0e5e3;display: flex;justify-content: center" mat-button >Seleccionar</button>
+          </div>
+
+      </mat-card>
+    </div>
+    <div *ngIf="accountType=='arrendador'" style="display: flex;flex-direction: row;width: 80%;justify-content: space-between; margin-left: auto;margin-right: auto; margin-top: 3%">
+      <mat-card *ngFor=" let plan of plansLandlord" style="width: 28%" >
+        <h1>{{plan.name}}</h1>
+        <div *ngFor="let benefit of plan.benefits">
+          <p>{{benefit}}</p>
+        </div>
+        <p style="text-align: center">S/ {{plan.price}}</p>
+        <div style="width: 100%">
+         <button style="margin: auto;background-color: #e0e5e3;display: flex;justify-content: center" mat-button >Seleccionar</button>
+        </div>
+      </mat-card>
+    </div>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
+</div>
