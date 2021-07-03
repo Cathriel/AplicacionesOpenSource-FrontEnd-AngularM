@@ -1,0 +1,47 @@
+
+<mat-card class="mat-parent">
+  <h1>Buscar Leaseholder</h1>
+
+  <carousel >
+    <div class="carousel-inner" align="center" role="listbox">
+
+      <slide *ngFor="let it of ReturnArrayDividedByThree()">
+        <div class="carousel-item" style="display: block; width: 100%;">
+
+          <div *ngFor="let leaseholder of ReturnThreeLeaseholdersStartingBy(it) "  class="col-md-4">
+            <mat-card class="example-card">
+
+              <img mat-card-image src="{{leaseholder.profilePicture}}" alt="Photo of a leaseholder" style="height: 290px">
+              <mat-card-content>
+                <div class="card-body">
+                  <h4 class="card-title">{{leaseholder.name }} {{leaseholder.lastName}}</h4>
+                  <p> {{ leaseholder.description}}
+                  </p>
+                  <button mat-raised-button color="primary">Contactar</button>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+        </div>
+      </slide>
+
+
+<mat-card class="mat-parent-small" >
+  <carousel>
+    <slide *ngFor="let lease of this.leaseholders" >
+      <mat-card class="example-card">
+        <img mat-card-image src="https://picsum.photos/id/{{lease.id}}/708/472" alt="Photo of a leaseholder">
+        <mat-card-content>
+          <div class="card-body">
+            <h4 class="card-title">{{lease.name }} {{lease.lastName}}</h4>
+            <p> {{ lease.description}}
+            </p>
+            <button mat-raised-button color="primary">Contactar</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </slide>
+  </carousel>
+</mat-card>
+
