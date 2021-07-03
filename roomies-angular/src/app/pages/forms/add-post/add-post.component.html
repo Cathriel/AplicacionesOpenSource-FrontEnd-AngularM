@@ -1,0 +1,184 @@
+<div>
+  <h1 style="text-align: center; font-size: 45px;margin-top: 2%;margin-bottom: 3%">¡Da a conocer tu propiedad!</h1>
+  <h5 style="text-align: center; font-size: 20px;margin-bottom: 3%">Llena los siguientes datos de tu propiedad y comparte tu inmueble con todos nuestro Roomies</h5>
+  <mat-horizontal-stepper [linear]="false" #stepper>
+    <mat-step  [stepControl]="firstFormGroup"  [editable]="true" >
+      <form >
+        <ng-template matStepLabel>Ubicación</ng-template>
+        <mat-card style="text-align: center">
+          <div style="display: flex; flex-direction: column;margin-bottom: 1%">
+            <span style="font-size: 20px;margin-bottom: 2%">Paso 1 de 3</span>
+            <h1 style="font-size: 40px;margin-bottom: 2%">Ubicación</h1>
+            <mat-card-subtitle style="font-size: 20px;margin-bottom: 2%">¿Donde se encuentra ubicado tu inmueble?</mat-card-subtitle>
+          </div>
+          <mat-card-content>
+            <div style="display: flex;flex-direction: row; width: 95%; margin: auto;justify-content: space-between" >
+              <mat-form-field appearance="outline" style="width: 48%">
+                <mat-label>Calle y número</mat-label>
+                <input matInput placeholder="Address" name="address" required [(ngModel)]="postData.address">
+              </mat-form-field>
+              <mat-form-field appearance="outline"  style="width: 48%">
+                <mat-label>Departamento</mat-label>
+                <input matInput placeholder="Department" name="department" required [(ngModel)]="postData.department">
+              </mat-form-field>
+            </div>
+
+            <div style="display: flex;flex-direction: row; width: 95%; margin: auto;justify-content: space-between" >
+              <mat-form-field appearance="outline" style="width: 48%">
+                <mat-label  >Provincia</mat-label>
+                <input matInput >
+              </mat-form-field>
+              <mat-form-field appearance="outline" style="width: 48%">
+                <mat-label>Distrito</mat-label>
+                <input matInput placeholder="District" name="district" required [(ngModel)]="postData.district">
+              </mat-form-field>
+            </div >
+
+          </mat-card-content>
+          <div>
+            <button mat-button matStepperNext style="background-color:  rgb(251,163,26)">SIGUIENTE</button>
+          </div>
+
+        </mat-card>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup"  [editable]="true" >
+      <form >
+        <ng-template matStepLabel>Detalles</ng-template>
+        <mat-card >
+          <div style="text-align: center; display: flex; flex-direction: column;margin-bottom: 3%">
+            <span style="font-size: 20px;margin-bottom: 2%">Paso 2 de 3</span>
+            <h1 style="font-size: 40px;margin-bottom: 2%">Detalles</h1>
+          </div>
+          <mat-card-content>
+            <div style="display: flex;flex-direction: row; width: 95%; margin: auto;justify-content: space-between" >
+              <div style="display: flex; flex-direction: column;width: 48%">
+                <span>Dormitorios</span>
+                <mat-slider thumbLabel tickInterval="1" min="0" max="10" name="disct" required [(ngModel)]="postData.roomQuantity"></mat-slider>
+              </div>
+              <div style="display: flex; flex-direction: column;width: 48%">
+                <span>Baños</span>
+                <mat-slider thumbLabel tickInterval="1" min="0" max="10" name="dtrict" required [(ngModel)]="postData.bathQuantity"></mat-slider>
+              </div>
+            </div>
+
+            <div style="display: flex;flex-direction: row; width: 95%; margin: auto;justify-content: space-between" >
+              <div style="display: flex; flex-direction: column;width: 48%">
+                <span>Medio Baños</span>
+                <mat-slider thumbLabel tickInterval="1" min="0" max="10"></mat-slider>
+              </div>
+              <div style="display: flex; flex-direction: column ;width: 48%">
+                <span>Superficie</span>
+                <mat-form-field appearance="outline" >
+                  <input matInput type="number" placeholder="0">
+                  <span matSuffix>m^2</span>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div style="display: flex;flex-direction: row; width: 95%; margin: auto;justify-content: space-between" >
+              <div style="display: flex; flex-direction: column ;width: 48%">
+                <span>Título del Post</span>
+                <mat-form-field appearance="outline" >
+                  <input matInput placeholder="Título" name="title" required [(ngModel)]="postData.title">
+                </mat-form-field>
+              </div>
+              <div style="display: flex; flex-direction: column ;width: 48%">
+                <span>Ascensor(es)</span>
+                <mat-form-field appearance="outline" >
+                  <input matInput type="number" placeholder="0">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div style="display: flex;flex-direction: row; width: 95%; margin: auto;justify-content: space-between" >
+              <div style="display: flex; flex-direction: column ;width: 48%">
+                <span>Piso en el que se encuentra</span>
+                <mat-form-field appearance="outline" >
+                  <input matInput type="number" placeholder="0">
+                </mat-form-field>
+              </div>
+              <div style="display: flex; flex-direction: column ;width: 48%">
+                <span>Precio</span>
+                <mat-form-field appearance="outline" >
+                  <input matInput type="number" placeholder="0" name="distdsrict" required [(ngModel)]="postData.price">
+                  <span matPrefix>S/</span>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div style="display: flex;flex-direction: row; width: 95%; margin: auto;justify-content: space-between" >
+              <mat-radio-group color="primary" style="display: flex; flex-direction: column">
+                <span style="margin-bottom: 10%">Antiguedad</span>
+                <mat-radio-button value="estreno" style="margin-bottom: 10%">A estrenar</mat-radio-button>
+                <mat-radio-button value="usada">Usada</mat-radio-button>
+              </mat-radio-group>
+
+            </div>
+
+          </mat-card-content>
+          <div style="text-align: center">
+            <button mat-button matStepperNext style="background-color:  rgb(251,163,26)">SIGUIENTE</button>
+            <button mat-button matStepperPrevious style="color: red;margin-left: 2%">VOLVER</button>
+          </div>
+        </mat-card>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup"  [editable]="true" >
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Multimedia</ng-template>
+        <mat-card style="text-align: center">
+          <div style="display: flex; flex-direction: column;margin-bottom: 1%">
+            <span style="font-size: 20px;margin-bottom: 2%">Paso 3 de 3</span>
+            <h1 style="font-size: 40px;margin-bottom: 2%">Multimedia</h1>
+            <mat-card-subtitle style="font-size: 20px;margin-bottom: 2%">¡Agregar fotos y/o vídeos a tu anuncio!</mat-card-subtitle>
+          </div>
+          <mat-card-content>
+            <div>
+            </div>
+            <div>
+              <mat-icon style="margin-right: 3%">add_a_photo</mat-icon>
+              <mat-form-field appearance="outline" style="width: 80%">
+                <mat-label>Fotos de la propiedad</mat-label>
+                <input matInput formControlName="picture" type="text">
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-icon style="margin-right: 3%">switch_video</mat-icon>
+              <mat-form-field appearance="outline" style="width: 80%">
+                <mat-label>Video de presentanción</mat-label>
+                <input matInput >
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-icon style="margin-right: 3%">360</mat-icon>
+              <mat-form-field appearance="outline" style="width: 80%">
+                <mat-label>Fotos 360°</mat-label>
+                <input matInput >
+              </mat-form-field>
+            </div>
+          </mat-card-content>
+          <div>
+            <button mat-button matStepperNext  (click)="addPost()" routerLinkActive="active" style="background-color:  rgb(251,163,26)">PUBLICAR</button>
+            <button mat-button matStepperPrevious style="color: red;margin-left: 2%">VOLVER</button>
+          </div>
+        </mat-card>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup"  [editable]="true" >
+      <form >
+        <ng-template matStepLabel>Confirmación</ng-template>
+        <div style="padding-bottom: 4%">
+          <mat-card style="display: flex;flex-direction: column;width: 40%;margin-left: auto;margin-right: auto;margin-top: 3%; background-color: #EBEBEB">
+            <h1 style="text-align: center">¡Tu propiedad se publicó exitosamente!</h1>
+            <img src="https://e.an.amtv.pe/actualidad-lima-jovenes-solteros-optan-cada-vez-mas-departamentos-42-m2-n200123-612x406-211391.jpg" alt=referencial
+                 style="width: 90%;height: 55%;margin-left: auto;margin-right: auto;margin-bottom: 5%">
+            <button mat-raised-button (click)="navigateToPost()" color="primary" style="width: 80%;margin: auto">VER PUBLICACIÓN</button>
+          </mat-card>
+        </div>
+
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
+
+</div>

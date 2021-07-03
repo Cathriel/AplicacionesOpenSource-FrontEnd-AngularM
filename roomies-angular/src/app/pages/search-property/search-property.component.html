@@ -1,0 +1,111 @@
+<div class="content">
+  <div class="left">
+    <mat-card fxFlex>
+      <mat-card-title [style.margin.px]="'25'" style="font-size: 1.4em;color: #615f5f">Ubicación</mat-card-title>
+      <form class="example-form" [style.margin.px]="'25'">
+        <mat-form-field appearance="fill" class="example-full-width">
+          <input type="text" [(ngModel)]="dep" placeholder="Departamento" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+
+
+      <div class="row" [style.margin.px]="'25'">
+        <form class="example-form">
+          <mat-form-field appearance="fill" style="width: 45%">
+            <input type="text" [(ngModel)]="province" placeholder="Provincia" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" style="width: 45%;margin-left: 10%">
+            <input type="text" [(ngModel)]="dist" placeholder="Distrito" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
+
+      <div [style.margin.px]="'25'">
+        <form class="example-form">
+          <mat-card-title [style.margin-top.px]="'30'" style="font-size: 1.4em;padding-top: 7%;color: #615f5f">Precio (S/.)</mat-card-title>
+          <ngx-slider [style.margin-top.px]="'60'" [(ngModel)]="rangeValues" name="rv1" (click)="handleChange()" [(value)]="valuePrice" [(highValue)]="highValuePrice" [options]="optionsPrice"></ngx-slider>
+        </form>
+      </div>
+      <div [style.margin.px]="'25'">
+        <form class="example-form">
+          <mat-card-title [style.margin-top.px]="'30'" style="font-size: 1.4em;padding-top: 9%;color: #615f5f">Superficie (m²)</mat-card-title>
+          <ngx-slider [style.margin-top.px]="'60'" [(ngModel)]="rangeValues2" name="rv2" (click)="handleChange2()"  [(value)]="valueArea" [(highValue)]="highValueArea" [options]="optionsArea"></ngx-slider>
+        </form>
+      </div>
+
+      <div [style.margin.px]="'25'">
+        <form class="example-form" >
+          <mat-card-title style="font-size: 1.4em;margin-top: 15%;color: #615f5f" >Cantidad de Habitaciones</mat-card-title>
+            <mat-checkbox value="1" style="margin-left: 5%" (click)="checkFilter(1)">1</mat-checkbox>
+            <mat-checkbox value="2" style="margin-left: 10%" (click)="checkFilter(2)">2</mat-checkbox>
+            <mat-checkbox value="3" style="margin-left: 10%" (click)="checkFilter(3)">+3</mat-checkbox>
+
+        </form>
+      </div>
+      <div [style.margin.px]="'25'">
+        <form class="example-form">
+          <mat-card-title style="font-size: 1.4em;margin-top: 15%;color: #615f5f" >Cantidad de Baños</mat-card-title>
+          <mat-checkbox value="1" style="margin-left: 5%" (click)="checkFilter2(1)">1</mat-checkbox>
+          <mat-checkbox value="2" style="margin-left: 10%" (click)="checkFilter2(2)">2</mat-checkbox>
+          <mat-checkbox value="3" style="margin-left: 10%" (click)="checkFilter2(3)">+3</mat-checkbox>
+        </form>
+      </div>
+
+    </mat-card>
+
+  </div>
+
+  <div fxLayout="row wrap" fxLayoutGap="10px grid" class="right">
+
+    <ng-template let-bestMember="members[0]">
+      best: {{bestMember|json}}
+    </ng-template>
+
+    <div fxFlex="32" *ngFor="let post of posts | filter: dep | filter: province | filter: dist;"  >
+      <mat-card fxFlex style="height: 32em">
+        <div style="position: relative">
+        <img mat-card-image [src]="post.picture" alt="Photo of {{post.title}}">
+        </div>
+        <button mat-icon-button  style="position: absolute;top: 0;right: 0;color: white" aria-label="Example icon button with a heart icon">
+          <mat-icon (click)="assignPost(post.id)">favorite</mat-icon>
+        </button>
+
+        <mat-card-header>
+          <mat-card-title  style="font-size: 1.4em">S/ {{post.price}}</mat-card-title>
+          <mat-card-subtitle style="font-size: 1.3em;margin-top: 1%">{{post.department}}, {{post.district}}</mat-card-subtitle>
+          <mat-card-subtitle style="font-size: 1.2em;padding-top: 18%">{{post.title}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <section>
+            <div style="flex-direction: row;display: flex;float: right"  >
+<!--              <button class="button" mat-raised-button  routerLink="/detailed-post" routerLinkActive="active">Ver más</button>-->
+              <button class="button" mat-raised-button style="margin-bottom: auto" (click)="navigateToDetailPost(post.id)" routerLinkActive="active">Ver más</button>
+            </div>
+          </section>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="left">
+    <mat-paginator [length]="members.length"></mat-paginator>
+  </div>
+
+</div>
+
+

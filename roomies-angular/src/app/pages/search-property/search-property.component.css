@@ -1,0 +1,58 @@
+.content {
+  width: 100%;
+}
+
+.left {
+  padding-left: 10px;
+  padding-top: 10px;
+  margin-left: 10px;
+  float: left;
+  position: relative;
+  width: 30%;
+  height: auto;
+}
+
+.right {
+  padding-top: 5px;
+  padding-left: 5px;
+  margin-left: 5px;
+  position: relative;
+  float: left;
+  width: 65%;
+  height: auto;
+}
+div.stars {
+  width: 270px;
+  display: inline-block;
+}
+row {
+  display: table-cell;
+  width: 490px;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+}
+
+.example-full-width {
+  width: 86%;
+}
+
+.row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+mat-radio-button {
+  margin: 15px;
+}
+
+.button{
+  font-size: 1em;
+  background-color: #fba31b;
+  margin-top: 50%;
+  text-align: center;
+}
+
