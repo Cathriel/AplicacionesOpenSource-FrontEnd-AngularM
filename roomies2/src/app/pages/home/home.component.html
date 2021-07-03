@@ -6,7 +6,7 @@
 
         <mat-card class="card" style="background-color: #ae8aa8;margin-left: auto;margin-right: 5% ">
           <div >
-          <mat-card-title style="font-size: 1.5em;padding-top: 7%">Tu compañero ideal</mat-card-title>
+          <mat-card-title style="font-size: 1.5em;padding-top: 7%" >Tu compañero ideal</mat-card-title>
           <hr style="max-width: 80%;margin: 0">
           <mat-card-content style="font-size: medium;padding-top: 7%">Roomies cuenta con una variedad de filtros para encontrar al roomate que tenga mayor compatibilidad contigo.</mat-card-content>
           </div>
@@ -31,29 +31,35 @@
     <mat-card-title style="font-size: x-large">Últimas Publicaciones</mat-card-title>
   </div>
   <hr style="border: 1px solid #E1E1E1 ">
-  <mat-card style="margin-top: 2%;background-color: #f6f6f6">
-    <div style="flex-direction: row;display: flex;justify-content: space-between;margin: auto;width: 80%">
 
-    <div style="max-width: 30%" *ngFor="let member of members" >
-      <mat-card style="background-color: #eeeeee;margin: auto;padding-bottom: 25%">
+    <div class="center" style="justify-content: space-between" >
 
-        <img mat-card-image [src]="member.url" alt="Photo of {{member.title}} ">
+      <div fxFlex="23" *ngFor="let post of latestPosts"  >
 
-
-          <mat-card-title style="margin-bottom: 8%;margin-top:6%;font-size: large">{{member.title}}</mat-card-title>
-
-          <mat-card-subtitle class="line-height" style="font-size: medium">{{member.subtitle}}</mat-card-subtitle>
-
-
-        <mat-card-content>
-
-          <div style="flex-direction: row;display: flex;float: right" >
-            <button class="button" style="margin-right: 6%" mat-raised-button>Contacto</button>
-            <button class="button" mat-raised-button>Ver más</button>
+        <mat-card  fxFlex >
+          <div style="position: relative">
+            <img mat-card-image [src]="post.picture" alt="Photo of {{post.title}}">
           </div>
-        </mat-card-content>
-      </mat-card>
+          <button mat-icon-button  style="position: absolute;top: 0;right: 0;color: white" aria-label="Example icon button with a heart icon">
+            <mat-icon>favorite</mat-icon>
+          </button>
+
+          <mat-card-header>
+            <mat-card-title  style="font-size: 1.4em;text-align: left">{{post.price}}</mat-card-title>
+            <mat-card-subtitle style="font-size: 1.3em;margin-top: 1%">{{post.department}}, {{post.district}}</mat-card-subtitle>
+            <mat-card-subtitle style="font-size: 1.2em;padding-top: 18%;text-align: left">{{post.title}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <section>
+              <div style="flex-direction: row;display: flex;float: right"  >
+                <!--              <button class="button" mat-raised-button  routerLink="/detailed-post" routerLinkActive="active">Ver más</button>-->
+                <button class="button" mat-raised-button style="margin-bottom: auto"  routerLinkActive="active">Ver más</button>
+              </div>
+            </section>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+
     </div>
-  </div>
-  </mat-card>
 
