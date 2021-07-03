@@ -1,3 +1,7 @@
+.background{
+  background-color: #b06b9c;
+}
+
 mat-button-toggle {
   text-align: justify;
   padding-top: 10px;
@@ -33,6 +37,7 @@ button {
 }
 
 .left {
+
   padding-left: 10px;
   padding-top: 10px;
   margin-left: 10px;
@@ -43,7 +48,7 @@ button {
 }
 
 .right {
-  padding-top: 5px;
+  padding-top: 10px;
   padding-left: 5px;
   margin-left: 5px;
   position: relative;
@@ -72,3 +77,16 @@ mat-expansion-panel {
   width: 50%;
 }
 
+.title{
+  font-size: 1.5em;
+}
+
+.button{
+  font-size: 1em;
+  background-color: #fba31b;
+  margin-top: 50%;
+  text-align: center;
+}
+/**{*/
+/*  border: 2px solid black;*/
+/*}*/
