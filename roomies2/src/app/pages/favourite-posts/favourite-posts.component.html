@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-title>Publicaciones favoritas</mat-card-title>
+  <hr>
+  <div fxLayout="row wrap" fxLayoutGap="10px grid" class="right">
+    <div fxFlex="24" *ngFor="let post of posts" class="example-card">
+      <mat-card>
+
+        <div style="position: relative">
+          <img mat-card-image [src]="members[post.id-1].url" alt="Photo of {{post.title}}">
+        </div>
+
+        <button mat-icon-button  style="position: absolute;top: 0;right: 0;color: white" aria-label="Example icon button with a heart icon">
+          <mat-icon (click)="UnassignPost(post.id)">favorite</mat-icon>
+        </button>
+
+        <mat-card-header>
+          <mat-card-title  style="font-size: 1.4em">S/ {{post.price}}</mat-card-title>
+          <mat-card-subtitle style="font-size: 1.3em;margin-top: 1%">{{post.department}}, {{post.district}}</mat-card-subtitle>
+          <mat-card-subtitle style="font-size: 1.2em;padding-top: 18%">{{post.title}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <section>
+            <div style="flex-direction: row;display: flex;float: right"  >
+              <button class="button" mat-raised-button style="margin-bottom: auto" (click)="navigateToDetailedPost(post.id)" routerLinkActive="active">Ver más</button>
+            </div>
+          </section>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</mat-card>
+
