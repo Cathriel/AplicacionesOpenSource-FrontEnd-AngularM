@@ -1,4 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
+import {PostsApiService} from "../../services/posts/posts-api.service";
+import {TokenStorageService} from "../../services/authentication/token-storage.service";
+import {UsersApiService} from "../../services/users/users-api.service";
+import {LandlordsApiService} from "../../services/profiles/landlords-api.service";
+import {JustEmail} from "../../models/justEmail";
+import {LeaseholderResource} from "../../models/leaseholderResource";
+import {LeaseholdersApiService} from "../../services/profiles/leaseholders-api.service";
+import {Plan} from "../../models/plan";
+import {Profile} from "../../models/profile";
 
 @Component({
   selector: 'app-home-leaseholder',
@@ -6,12 +16,109 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-leaseholder.component.css']
 })
 export class HomeLeaseholderComponent implements OnInit {
+  currentUser: any;
+  profile: any;
+  justEmail:JustEmail= {'email':''};
+  posts:any=[];
+  somePosts:any=[];
+  plan: Plan={
+    id:0,
+    description:'',
+    name:'',
+    price:0
+  }
+  leaseholder: Profile= {
+    id:0,
+    address:'',
+    birthday:'',
+    cellphone:0,
+    department:'',
+    description:'',
+    district:'',
+    lastName:'',
+    name:'',
+    province:'',
+    profilePicture:'',
+    plan:this.plan};
+  profiles:any=[];
+  someProfiles:any=[];
 
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute,private postsApi: PostsApiService,
+              private tokenStorageService: TokenStorageService,
+              private usersApiService: UsersApiService,
+              private leaseholderApiService: LeaseholdersApiService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.tokenStorageService.getUser();
+    this.justEmail.email=this.currentUser.username;
+    if(this.currentUser){
+      this.getProfileData();
+      console.log(this.leaseholder);
+      console.log("aaaa");
+    }
+    else{
+      this.router.navigate(['/log-in']).then(()=>{
+        console.log(this.router.url);
+        window.location.reload();
+      });
+    }
   }
   panelOpenState = false;
+
+
+  getAllPosts(): void {
+    this.postsApi.getAllPost().subscribe((response: any) => {
+      console.log(response);
+      this.posts= response.content;
+      for(let i=1; i<=4; i++){
+        this.somePosts.push(this.posts[this.posts.length-i])
+      }
+      console.log(this.somePosts);
+    });
+  }
+
+
+  getProfileData(){
+    this.getAllPosts();
+    this.getLeaseholders();
+    this.usersApiService.getUserByEmail(this.justEmail).subscribe(
+      data=> {
+        console.log(data);
+        this.usersApiService.getProfileByUserId(data.id).subscribe(
+          user=>{
+            this.leaseholder=user;
+            if(this.leaseholder.plan.id>=3){
+              this.router.navigate(['/home-landlord']).then(()=>{
+                console.log(this.router.url);
+                window.location.reload();
+              });
+            }
+          }
+        )
+      }
+    )
+  }
+
+  gotToTarget(postId:number){
+    this.router.navigate([`/detailed-post/${postId}`]).then(()=>{
+      console.log(this.router.url);
+      window.location.reload();
+    });
+
+  }
+
+  getLeaseholders(){
+    this.leaseholderApiService.getAll().subscribe(
+      data=>{
+        console.log(data.content);
+        this.profiles= data.content;
+        for(let i=1; i<=1; i++){
+          this.someProfiles.push(this.profiles[this.profiles.length-i])
+        }
+        console.log(this.someProfiles);
+      }
+    )
+  }
 
   latest: {title: string,  description: string, dateVisited:string,url: string}[] = [
     {title: 'Casa de 2 pisos con habitacion compartida', description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, ' +
